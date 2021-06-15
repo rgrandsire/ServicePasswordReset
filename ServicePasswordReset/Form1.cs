@@ -46,9 +46,15 @@ namespace ServicePasswordReset
             startInfo.CreateNoWindow = true;
             startInfo.LoadUserProfile = true;
             Process.Start(startInfo);
-            MessageBox.Show("Successfully reset the Service password", "Password Resewt Status", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            String ZrES = Path.GetDirectoryName(Application.ExecutablePath) + "\\Results.txt";
+          if (File.Exists(ZrES) == true)
+            {
+                string[] zResult = File.ReadAllLines(ZrES);
+              if (zResult.Contains("(1 rows affected)"))
+                {
+                    MessageBox.Show("The Service account's password has been reset", "Password Resewt Status", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
         }
-
     }
 }
-
